@@ -2,8 +2,6 @@
 
 *Onyx Task Bundle for Implementing Data Processing Tasks in R*
 
----
-
 
 ## Rationale
 
@@ -11,7 +9,7 @@ onyx-r provides an Onyx [task
 bundle](http://www.onyxplatform.org/jekyll/update/2016/06/13/Task-Bundles.html)
 for running data processing tasks in [R](https://www.r-project.org).
 
-A typical use case is using R models (created via statistical or machine
+A typical use case is running R models (created via statistical or machine
 learning algorithms) in Onyx job workflows, at scale:
 
 1. A [data scientist](https://xkcd.com/552/) exports a model as an RData file
