@@ -32,9 +32,9 @@ name of the R segment processing function to call.
 When an onyx-r task is prepared for execution on a virtual peer through [Onyx
 lifecycles](http://www.onyxplatform.org/docs/user-guide/0.9.10-beta1/#lifecycles),
 the task can be provided with R code to `source`, R data (in `RData` format
-exported from R via `save`) to `load` and Clojure values to assign to R
-variables to `assign`. These configuration options are also supplied by the
-user at job submit time through the Onyx catalog.
+exported from R via `save`) to `load` and Clojure values to `assign` to R
+variables. These configuration options are also supplied by the user at job
+submit time through the Onyx catalog.
 
 
 ## Quick Start Guide
