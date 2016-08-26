@@ -12,8 +12,7 @@ for running data processing tasks in [R](https://www.r-project.org).
 A typical use case is running R models (created via statistical or machine
 learning algorithms) in Onyx job workflows, at scale:
 
-1. A [data scientist](https://xkcd.com/552/) exports a model as an RData file
-   `model.RData`.
+1. A [data scientist](https://xkcd.com/552/) exports a model as an RData file.
 2. An Onyx developer configures an onyx-r task to load the model on job submit
    time and use it to create predictions when bundles of Onyx segments arrive
    at the task. 
