@@ -92,5 +92,6 @@ Distributed under the Eclipse Public License, the same as Clojure and Onyx.
 Commercial support is available through sourcewerk GmbH:
 
 https://sourcewerk.de
+
 info@soucewerk.de
 
