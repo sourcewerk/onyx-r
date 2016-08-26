@@ -93,5 +93,5 @@ Commercial support is available through sourcewerk GmbH:
 
 https://sourcewerk.de
 
-info@soucewerk.de
+info@sourcewerk.de
 
