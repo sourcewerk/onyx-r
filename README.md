@@ -21,7 +21,7 @@ learning algorithms) in Onyx job workflows, at scale:
    at the task. 
 
 
-## Architecture
+## Architecture Overview
 
 Each Onyx peer runs an Rserve instance, each virtual peer holds a connection to
 its local Rserve instance. onyx-r tasks are configured at job submit time
@@ -62,7 +62,7 @@ The following Clojure code block shows how to configure an onyr-r task through
   (onyx-r.tasks.r/r-function
     :rfun ; name of the Onyx task 
     "rfun" ; name of the R function to call
-    {:source ["rfun <- function(segment) list(fooResult = segment, assigned = c(bar, baz), loaded = testData)"] ; R code to source when the task is prepared for execution on a virtual peer
+    {:source ["rfun <- function(segment) list(segment = segment, assigned = c(bar, baz), loaded = testData)"] ; R code to source when the task is prepared for execution on a virtual peer
      :load [(slurp-bytes "testData.RData")] ; RData to load when the task is prepared for execution on a virtual peer
      :assign {:bar 42
               :baz "Hallo, Onyx!"}} ; R variables to assign when the task is prepared for execution on a virtual peer 
