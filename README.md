@@ -12,7 +12,16 @@ bundle](http://www.onyxplatform.org/jekyll/update/2016/06/13/Task-Bundles.html)
 for running data processing tasks in [R](https://www.r-project.org).
 
 A typical use case is using R models (created via statistical or machine
-learning algorithms) in Onyx job workflows, at scale.
+learning algorithms) in Onyx job workflows, at scale:
+
+1. A [data scientist](https://xkcd.com/552/) exports a model as an RData file
+   `model.RData`.
+2. An Onyx developer configures an onyx-r task to load the model on job submit
+   time and use it to create predictions when bundles of Onyx segments arrive
+   at the task. 
+
+
+## Architecture
 
 Each Onyx peer runs an Rserve instance, each virtual peer holds a connection to
 its local Rserve instance. onyx-r tasks are configured at job submit time
@@ -32,15 +41,45 @@ user at job submit time through the Onyx catalog.
 
 ## Quick Start Guide
 
-TODO
+First, install Rserve on each Onyx peer as described at:
+https://www.rforge.net/Rserve/doc.html
 
+### Running the Tests
 
-## Running the Tests
-
-First, start a local Rserve server as documented at:
+Start a local Rserve server as documented at:
 https://www.rforge.net/Rserve/doc.html#start
 
 Then type `lein test` to runn all tests for onyx-r.
+
+### onyx-r Task Options
+
+The following Clojure code block shows how to configure an onyr-r task through
+`add-task`:
+
+```clojure
+(add-task
+  my-base-job
+  (onyx-r.tasks.r/r-function
+    :rfun ; name of the Onyx task 
+    "rfun" ; name of the R function to call
+    {:source ["rfun <- function(segment) list(fooResult = segment, assigned = c(bar, baz), loaded = testData)"] ; R code to source when the task is prepared for execution on a virtual peer
+     :load [(slurp-bytes "testData.RData")] ; RData to load when the task is prepared for execution on a virtual peer
+     :assign {:bar 42
+              :baz "Hallo, Onyx!"}} ; R variables to assign when the task is prepared for execution on a virtual peer 
+    batch-settings))
+```
+
+Use something like `slurp-bytes` to load RData files into a Byte arrays
+expected by onyx-r's `:load` parameter:
+
+```clojure
+(defn slurp-bytes
+  "Slurp the bytes from a slurpable thing"
+  [x]
+  (with-open [out (java.io.ByteArrayOutputStream.)]
+    (clojure.java.io/copy (clojure.java.io/input-stream x) out)
+    (.toByteArray out)))
+```
 
 
 ## License
