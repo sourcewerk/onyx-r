@@ -1,5 +1,6 @@
 # <img alt="Onyx Logo" src="https://i.imgur.com/zdlOSZD.png?1" height="64"> + <img alt="R Logo" src="https://www.r-project.org/Rlogo.png" height="64"> = onyx-r 
 *Onyx Task Bundle for Implementing Data Processing Tasks in R*
+
 [![Build Status](https://travis-ci.org/sourcewerk/onyx-r.svg?branch=master)](https://travis-ci.org/sourcewerk/onyx-r)
 
 
