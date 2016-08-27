@@ -1,4 +1,4 @@
-(defproject onyx-r "0.1.0-SNAPSHOT"
+(defproject sourcewerk/onyx-r "0.1.0-SNAPSHOT"
   :description "Onyx Task Bundle for Implementing Data Processing Tasks in R"
   :url "https://github.com/sourcewerk/onyx-r"
   :license {:name "Eclipse Public License"
