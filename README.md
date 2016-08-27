@@ -41,6 +41,15 @@ submit time through the Onyx catalog.
 First, install Rserve on each Onyx peer as described at:
 https://www.rforge.net/Rserve/doc.html
 
+### Installation 
+
+onyx-r is available in Clojars. Add this `:dependency` to your Leiningen
+`project.clj`:
+
+```clojure
+[sourcewerk/onyx-r "0.1.0-SNAPSHOT"]
+```
+
 ### Running the Tests
 
 Start a local Rserve server as documented at:
