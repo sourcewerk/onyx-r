@@ -1,7 +1,6 @@
 language: clojure
+jdk: oraclejdk8
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq r-base r-cran-rserve
-install:
-  - R CMD Rserve
-
+install: R CMD Rserve
