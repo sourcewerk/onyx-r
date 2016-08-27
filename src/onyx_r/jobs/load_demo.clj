@@ -2,8 +2,8 @@
 ;; Copyright (c) 2016 sourcewerk GmbH.
 ;; Distributed under the Eclipse Public License, see LICENSE for details. 
 
-(ns onyx-r.jobs.basic
-  (:require [onyx.job :refer [add-task register-job]]
+(ns onyx-r.jobs.load-demo
+  (:require [onyx.job :refer [add-task]]
             [onyx.tasks.core-async :as core-async-task]
             [onyx-r.tasks.r :as r]))
 
@@ -15,7 +15,7 @@
     (clojure.java.io/copy (clojure.java.io/input-stream x) out)
     (.toByteArray out)))
 
-(defn basic-job
+(defn load-demo-job
   [batch-settings]
   (let [base-job   {:workflow        [[:in :rfun]
                                       [:rfun :out]]
@@ -29,12 +29,8 @@
         (add-task (core-async-task/input :in batch-settings))
         (add-task (r/r-function :rfun
                                 "rfun"
-                                {:source ["rfun <- function(segment) list(n = segment$n +1)"]}
+                                {:source ["rfun <- function(segment) list(n = segment$n +testData)"]
+                                 :load [(slurp-bytes "test/testData.RData")]}
                                 batch-settings))
         (add-task (core-async-task/output :out batch-settings)))))
-
-(defmethod register-job "basic-job"
-  [job-name config]
-  (let [batch-settings {:onyx/batch-size 1 :onyx/batch-timeout 1000}]
-    (basic-job batch-settings)))
 

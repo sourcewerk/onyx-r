@@ -78,6 +78,13 @@ expected by onyx-r's `:load` parameter:
     (.toByteArray out)))
 ```
 
+### Demo Code
+
+The supplied demo jobs show how to use onyr-r's features in context:
+* [source R code](src/onyx_r/jobs/source_demo.clj)
+* [load R data](src/onyx_r/jobs/load_demo.clj)
+* [assign R variables](src/onyx_r/jobs/assign_demo.clj)
+
 
 ## License
 
