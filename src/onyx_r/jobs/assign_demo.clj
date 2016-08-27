@@ -22,7 +22,7 @@
         (add-task (core-async-task/input :in batch-settings))
         (add-task (r/r-function :rfun
                                 "rfun"
-                                {:source ["rfun <- function(segment) list(n = segment$n +rVar1 * rVar2)"]
+                                {:source ["rfun <- function(segment) list(n = segment$n + rVar1 * rVar2)"]
                                  :assign {:rVar1 1.0
                                           :rVar2 2.0}}
                                 batch-settings))

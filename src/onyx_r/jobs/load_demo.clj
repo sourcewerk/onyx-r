@@ -29,7 +29,7 @@
         (add-task (core-async-task/input :in batch-settings))
         (add-task (r/r-function :rfun
                                 "rfun"
-                                {:source ["rfun <- function(segment) list(n = segment$n +testData)"]
+                                {:source ["rfun <- function(segment) list(n = segment$n + testData)"]
                                  :load [(slurp-bytes "test/testData.RData")]}
                                 batch-settings))
         (add-task (core-async-task/output :out batch-settings)))))
