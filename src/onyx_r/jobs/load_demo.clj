@@ -5,15 +5,9 @@
 (ns onyx-r.jobs.load-demo
   (:require [onyx.job :refer [add-task]]
             [onyx.tasks.core-async :as core-async-task]
+            [onyx-r.util :as u]
             [onyx-r.tasks.r :as r]))
 
-
-(defn slurp-bytes
-  "Slurp the bytes from a slurpable thing"
-  [x]
-  (with-open [out (java.io.ByteArrayOutputStream.)]
-    (clojure.java.io/copy (clojure.java.io/input-stream x) out)
-    (.toByteArray out)))
 
 (defn load-demo-job
   [batch-settings]
@@ -30,7 +24,7 @@
         (add-task (r/r-function :rfun
                                 "rfun"
                                 {:source ["rfun <- function(segment) list(n = segment$n + testData)"]
-                                 :load [(slurp-bytes "test/testData.RData")]}
+                                 :load [(u/slurp-bytes "test/testData.RData")]}
                                 batch-settings))
         (add-task (core-async-task/output :out batch-settings)))))
 

@@ -70,23 +70,14 @@ The following Clojure code block shows how to configure an onyr-r task through
     :rfun ; name of the Onyx task 
     "rfun" ; name of the R function to call
     {:source ["rfun <- function(segment) list(segment = segment, assigned = c(bar, baz), loaded = testData)"] ; R code to source when the task is prepared for execution on a virtual peer
-     :load [(slurp-bytes "testData.RData")] ; RData to load when the task is prepared for execution on a virtual peer
+     :load [(onyx-r.util/slurp-bytes "testData.RData")] ; RData to load when the task is prepared for execution on a virtual peer
      :assign {:bar 42
               :baz "Hallo, Onyx!"}} ; R variables to assign when the task is prepared for execution on a virtual peer 
     batch-settings))
 ```
 
-Use something like `slurp-bytes` to load RData files into a Byte arrays
-expected by onyx-r's `:load` parameter:
-
-```clojure
-(defn slurp-bytes
-  "Slurp the bytes from a slurpable thing"
-  [x]
-  (with-open [out (java.io.ByteArrayOutputStream.)]
-    (clojure.java.io/copy (clojure.java.io/input-stream x) out)
-    (.toByteArray out)))
-```
+[`onyx-r.util/slurp-bytes`](src/onyx_r/util.clj) loads (RData) files into a
+Byte arrays expected by onyx-r's `:load` parameter.
 
 ### Demo Code
 
