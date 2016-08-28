@@ -77,7 +77,7 @@ The following Clojure code block shows how to configure an onyr-r task through
 ```
 
 [`onyx-r.util/slurp-bytes`](src/onyx_r/util.clj) loads (RData) files into a
-Byte arrays expected by onyx-r's `:load` parameter.
+Byte array, as expected by onyx-r's `:load` parameter.
 
 ### Demo Code
 
